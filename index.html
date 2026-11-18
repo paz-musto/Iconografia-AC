@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca de iconografía</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Hojas de estilos .COM / ALIANZAS: Work Sans (H1 28, H2 22, H3 18, H4 14 / P1 16, P2 14, P3 12 / CTA Medium 14, 16 en mobile),
+     primario #E4002B, secundario #0195BF, neutros, CTA en píldora (r50), etiquetas r5. Layout: cabecera, filtros en una fila y grilla por subsistema; detalle en modal de dos columnas. */
+  --primario-50:#FCE6EA; --primario-500:#E4002B; --primario-600:#CF0027; --primario-700:#A2001F;
+  --secundario-50:#E6F4F9; --secundario-200:#8ACEE2; --secundario-500:#0195BF; --secundario-700:#016A88;
+  --neutro-50:#FFFFFF; --neutro-100:#F4F4F4; --neutro-200:#EEEEEE; --neutro-300:#DDDDDD; --neutro-500:#A9A9A9;
+  --neutro-700:#727272; --neutro-800:#494949; --neutro-900:#292929;
+  --exito-500:#09AA59; --caution-500:#F7B500; --warning-500:#FF6B00;
+  --bg:var(--neutro-900); --on-bg:var(--neutro-50); --on-bg-muted:#C7C7C7; --surface:var(--neutro-50); --ink:var(--neutro-900); --muted:var(--neutro-700);
+  --line:var(--neutro-300); --chip:var(--neutro-200); --icon:var(--neutro-800); --pane:var(--neutro-100); --focus:var(--secundario-500);
+  --shadow:0 24px 80px rgba(41,41,41,.28);
+  --display:"Work Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --h1:28px; --h2:22px; --h3:18px; --h4:14px; --p1:16px; --p2:14px; --p3:12px; --cta:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--on-bg);font-family:var(--display);font-weight:400;font-size:var(--p1);line-height:1.4;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 20px 80px}
+.brand{display:flex;justify-content:flex-end;margin:0 0 28px}
+.brand img{display:block;height:32px;width:auto;max-width:100%}
+
+/* Cabecera */
+.top{display:flex;flex-wrap:wrap;gap:24px 40px;align-items:flex-end;justify-content:space-between}
+.eyebrow{margin:0 0 8px;font-size:var(--p3);font-weight:600;letter-spacing:.1em;color:var(--on-bg-muted)}
+h1{margin:0;font-size:var(--h1);line-height:1.2;font-weight:400;text-wrap:balance}
+.sub{margin:8px 0 0;color:var(--on-bg-muted);font-size:var(--p1)}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.search{position:relative;display:block}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search input{width:min(340px,100%);height:45px;padding:0 18px 0 44px;border:1px solid var(--line);border-radius:50px;background:var(--surface);color:var(--ink);font:inherit;font-size:var(--p2)}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{border-color:var(--secundario-500)}
+.seg{display:inline-flex;padding:4px;border-radius:50px;background:var(--chip);gap:2px}
+.seg button{border:0;background:transparent;height:37px;padding:0 20px;border-radius:50px;font-size:var(--cta);font-weight:500;color:var(--muted)}
+.seg button[aria-checked="true"]{background:var(--ink);color:var(--neutro-50)}
+
+/* Filtros */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 8px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:37px;padding:0 16px;border:1px solid var(--neutro-700);border-radius:50px;background:transparent;font-weight:500;font-size:var(--p2)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--dot,var(--muted))}
+.chip small{color:var(--on-bg-muted);font-size:var(--p3);font-weight:400;font-variant-numeric:tabular-nums}
+.chip:hover{border-color:var(--on-bg)}
+.chip[aria-pressed="true"]{background:var(--neutro-50);border-color:var(--neutro-50);color:var(--ink)}
+.chip[aria-pressed="true"] small{color:inherit;opacity:.75}
+.count{margin:12px 0 0;color:var(--on-bg-muted);font-size:var(--p3);font-variant-numeric:tabular-nums}
+
+/* Grilla */
+.group{margin-top:32px}
+.group h2{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:var(--p3);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--on-bg-muted)}
+.group h2 i{width:8px;height:8px;border-radius:50%;background:var(--dot)}
+.group h2 small{font-weight:400;letter-spacing:0;text-transform:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px}
+.tile{color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.tile:hover{border-color:var(--primario-500);box-shadow:0 6px 20px rgba(41,41,41,.08)}
+.tile .ico{display:grid;place-items:center;height:40px;color:var(--icon)}
+.tile .lbl{font-size:var(--p3);line-height:1.3;text-align:center;color:var(--muted);text-wrap:balance;min-height:2.6em;display:flex;align-items:center}
+.tile:hover .ico{color:var(--primario-500)}
+.tile:hover .lbl{color:var(--ink)}
+.empty{margin:60px 0;text-align:center;color:var(--on-bg-muted)}
+.empty button{margin-top:12px;height:45px;padding:0 24px;border:1px solid var(--primario-500);border-radius:50px;background:transparent;color:var(--primario-500);font-size:var(--cta);font-weight:500}
+
+/* Modal */
+.scrim{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.6)}
+.scrim.open{display:flex}
+.modal{color:var(--ink);position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;width:min(1080px,100%);max-height:calc(100% - 8px);overflow:auto;padding:40px;border-radius:24px;background:var(--surface);box-shadow:var(--shadow)}
+.left{display:flex;flex-direction:column;align-items:center;gap:16px;min-width:0}
+.stage{position:relative;width:100%;max-width:520px;aspect-ratio:1;background:var(--pane);border:1px solid var(--secundario-200)}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.ov-grid,.ov-key,.ov-pad{display:none}
+.stage[data-grid="on"] .ov-grid,.stage[data-key="on"] .ov-key,.stage[data-pad="on"] .ov-pad{display:inline}
+.ov line,.ov rect,.ov circle{vector-effect:non-scaling-stroke;fill:none}
+.ov-grid line{stroke:#0195BF;stroke-opacity:.25;stroke-width:1}
+.ov-key *{stroke:#0195BF;stroke-opacity:.85;stroke-width:1}
+.ov-pad path{fill:#E4002B;fill-opacity:.12;stroke:none}
+.toggles{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.toggles button{height:37px;padding:0 18px;border:1px solid transparent;border-radius:50px;background:transparent;color:var(--muted);font-size:var(--p2);font-weight:500}
+.toggles button[aria-pressed="true"]{background:var(--secundario-50);border-color:var(--secundario-500);color:var(--secundario-700)}
+.right{display:flex;flex-direction:column;gap:20px;min-width:0}
+.kicker{display:flex;align-items:center;gap:8px;margin:0;color:var(--muted);font-size:var(--p2);padding-right:136px}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--dot)}
+.right h2{margin:-8px 0 0;font-size:var(--h2);line-height:1.2;font-weight:400;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin:-12px 0 0;color:var(--muted);font-size:var(--p3)}
+.meta code{font-family:var(--mono);font-size:var(--p3);color:var(--ink)}
+.win{position:absolute;top:22px;right:22px;z-index:3;display:flex;gap:6px}
+.win button{width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--muted)}
+.win button:hover{background:var(--chip);color:var(--ink)}
+.row{display:flex;gap:20px;align-items:center}
+.mini{flex:none;display:grid;place-items:center;width:120px;height:120px;border-radius:12px;background:var(--pane)}
+.sizebox{flex:1;min-width:0}
+.sizehead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;color:var(--muted);font-size:var(--p2)}
+.sizehead output{font-family:var(--mono);font-size:var(--p3);color:var(--ink)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:20px;margin:0;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(to right,var(--primario-500) var(--p,10%),var(--line) var(--p,10%))}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--primario-500)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.ticks{position:relative;height:22px;margin-top:4px}
+.ticks button{position:absolute;top:0;border:0;background:transparent;padding:2px 4px;font-size:var(--p3);color:var(--muted);font-variant-numeric:tabular-nums}
+.ticks button[aria-pressed="true"]{color:var(--primario-500);font-weight:600}
+.colorrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;color:var(--muted);font-size:var(--p2)}
+.colorrow input[type=color]{width:30px;height:30px;padding:0;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer}
+.colorrow code{font-family:var(--mono);font-size:var(--p3);color:var(--ink)}
+.swatches{display:flex;gap:6px}
+.swatches button{width:22px;height:22px;padding:0;border:1px solid var(--line);border-radius:50%}
+.swatches button[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:2px}
+.colorrow small{flex-basis:100%;font-size:var(--p3)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:45px;padding:0 16px;border:1px solid transparent;border-radius:50px;font-size:var(--cta);font-weight:500}
+.btn.primary{background:var(--primario-500);color:var(--neutro-50)}
+.btn.primary:hover{background:var(--primario-600)}
+.btn.outline{background:transparent;border-color:var(--primario-500);color:var(--primario-500)}
+.btn.outline:hover{background:var(--primario-50)}
+.btn.soft{background:var(--primario-50);color:var(--primario-500)}
+.btn.soft:hover{border-color:var(--primario-500)}
+.tabs{display:flex;gap:6px;margin-bottom:8px}
+.tabs button{border:0;background:transparent;padding:6px 14px;border-radius:50px;color:var(--muted);font-size:var(--p2);font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--neutro-50)}
+pre.code{margin:0;max-height:168px;overflow:auto;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--neutro-100);font-family:var(--mono);font-size:var(--p3);line-height:1.55;color:var(--ink);white-space:pre}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags button{padding:6px 12px;border:1px solid transparent;border-radius:5px;background:var(--secundario-50);color:var(--secundario-700);font-size:var(--p2);font-weight:500;line-height:1.2}
+.tags button:hover{border-color:var(--secundario-500)}
+.toast{position:fixed;left:50%;bottom:28px;z-index:40;transform:translate(-50%,20px);padding:12px 20px;border-radius:50px;background:var(--neutro-50);color:var(--ink);box-shadow:0 4px 16px rgba(0,0,0,.35);font-size:var(--p2);font-weight:500;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Objetivo, pilares y cifras */
+.about{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:56px;margin-top:72px;padding-top:40px;border-top:1px solid var(--neutro-700)}
+.about h2{margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--neutro-700);font-size:var(--h3);font-weight:600}
+.lead{margin:0;font-size:var(--h2);line-height:1.4;font-weight:400;max-width:34em;text-wrap:pretty}
+.lead em{font-style:italic;font-weight:600;color:var(--neutro-50)}
+.lead strong{font-weight:600;color:var(--neutro-50)}
+.stats{margin:0;display:grid;gap:18px}
+.stats div{display:flex;align-items:baseline;gap:20px}
+.stats dt{min-width:76px;font-size:var(--h1);font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.stats dd{margin:0;font-size:var(--p2);color:var(--on-bg-muted)}
+
+/* Mobile 390 (≤767): H1 24, CTA 16, modal como hoja inferior */
+@media (max-width:767px){
+  :root{--h1:24px;--cta:16px}
+  .about{grid-template-columns:1fr;gap:40px;margin-top:56px}
+  .stats dt{min-width:64px}
+  .brand img{height:26px}
+  .scrim{padding:0;align-items:flex-end}
+  .modal{grid-template-columns:1fr;gap:24px;padding:64px 20px 28px;border-radius:24px 24px 0 0;max-height:94%}
+  .stage{max-width:360px}
+  .kicker{padding-right:0}
+  .win{top:14px;right:14px}
+}
+@media (max-width:420px){
+  .row{flex-direction:column;align-items:stretch}
+  .mini{width:100%;height:104px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><img src="logo.png" alt="DGUX | Assist Card" width="186" height="32"></div>
+  <header class="top">
+    <div>
+      <p class="eyebrow">BIBLIOTECA</p>
+      <h1>Iconografía</h1>
+      <p class="sub" id="sub">5 subsistemas · 3 variables Light / Bold / Solid</p>
+    </div>
+    <div class="controls">
+      <label class="search">
+        <span class="sr">Buscar iconos</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Buscar: valija, médico, descuento…" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="seg" role="radiogroup" aria-label="Variante" id="seg">
+        <button role="radio" aria-checked="false" data-v="light">Light</button>
+        <button role="radio" aria-checked="true" data-v="bold">Bold</button>
+        <button role="radio" aria-checked="false" data-v="solid">Solid</button>
+      </div>
+    </div>
+  </header>
+  <nav class="chips" id="chips" aria-label="Subsistemas"></nav>
+  <p class="count" id="count" aria-live="polite"></p>
+  <main id="grid">
+    <p class="empty">Cargando iconos…</p>
+  </main>
+
+  <section class="about" aria-labelledby="aboutObj">
+    <div class="about-main">
+      <h2 id="aboutObj">Objetivo</h2>
+      <p class="lead">Diseñar un sistema iconográfico <em>unificado</em> para representar de manera <strong>consistente</strong> las coberturas, beneficios y adicionales de los productos de asistencia al viajero.</p>
+    </div>
+    <aside class="about-stats" aria-labelledby="aboutStats">
+      <h2 id="aboutStats">Iconografía</h2>
+      <dl class="stats">
+        <div><dt>40</dt><dd>íconos por categoría</dd></div>
+        <div><dt>05</dt><dd>subsistemas</dd></div>
+        <div><dt>03</dt><dd>variantes</dd></div>
+        <div><dt>120</dt><dd>assets</dd></div>
+      </dl>
+    </aside>
+  </section>
+</div>
+
+<div class="scrim" id="scrim">
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="win">
+      <button id="prev" aria-label="Icono anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button id="next" aria-label="Icono siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      <button id="close" aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="left">
+      <div class="stage" id="stage" data-grid="on" data-key="on" data-pad="off">
+        <svg class="ov" id="ov" viewBox="0 0 16 16" aria-hidden="true"></svg>
+        <svg class="big" id="big" viewBox="0 0 16 16" fill="none" role="img" aria-label=""></svg>
+      </div>
+      <div class="toggles" id="toggles">
+        <button data-t="grid" aria-pressed="true">Grilla</button>
+        <button data-t="key" aria-pressed="true">Keylines</button>
+        <button data-t="pad" aria-pressed="false">Padding</button>
+      </div>
+    </div>
+    <div class="right">
+      <p class="kicker"><i id="mDot"></i><span id="mCat"></span></p>
+      <h2 id="mTitle"></h2>
+      <p class="meta"><code id="mSlug"></code><span id="mNote"></span></p>
+      <div class="seg" role="radiogroup" aria-label="Variante del icono" id="mSeg" style="width:100%">
+        <button role="radio" data-v="light" style="flex:1">Light</button>
+        <button role="radio" data-v="bold" style="flex:1">Bold</button>
+        <button role="radio" data-v="solid" style="flex:1">Solid</button>
+      </div>
+      <div class="row">
+        <div class="mini"><svg id="mini" viewBox="0 0 16 16" fill="none" aria-hidden="true"></svg></div>
+        <div class="sizebox">
+          <div class="sizehead"><label for="size">Tamaño</label><output id="sizeOut" for="size">24 px</output></div>
+          <input type="range" id="size" min="16" max="128" step="1" value="24">
+          <div class="ticks" id="ticks"></div>
+        </div>
+      </div>
+      <div class="colorrow">
+        <label for="color">Color</label>
+        <input type="color" id="color" value="#292929">
+        <code id="colorOut">#292929</code>
+        <span class="swatches" id="swatches" role="group" aria-label="Colores de la paleta">
+          <button data-c="#292929" aria-label="Neutro 900" title="Neutro 900" style="background:#292929"></button>
+          <button data-c="#727272" aria-label="Neutro 700" title="Neutro 700" style="background:#727272"></button>
+          <button data-c="#E4002B" aria-label="Primario 500" title="Primario 500" style="background:#E4002B"></button>
+          <button data-c="#0195BF" aria-label="Secundario 500" title="Secundario 500" style="background:#0195BF"></button>
+        </span>
+        <small>El color se aplica a la vista previa y al PNG. El SVG usa currentColor.</small>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="copySvg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copiar SVG</button>
+        <button class="btn outline" id="copyJsx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Copiar JSX</button>
+        <button class="btn soft" id="dlSvg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Descargar SVG</button>
+        <button class="btn soft" id="dlPng"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.5"/><path d="m21 16-5-5-8 8"/></svg>Descargar PNG</button>
+      </div>
+      <div>
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" aria-selected="true" data-tab="svg">Código SVG</button>
+          <button role="tab" aria-selected="false" data-tab="jsx">Código JSX</button>
+        </div>
+        <pre class="code" id="code" tabindex="0"></pre>
+      </div>
+      <div class="tags" id="tags"></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  var CATS=[
+    {id:'salud',name:'Cobertura de salud',color:'#09AA59'},
+    {id:'viaje',name:'Viaje, transporte & equipaje',color:'#0195BF'},
+    {id:'proteccion',name:'Protección & seguridad',color:'#F7B500'},
+    {id:'pagos',name:'Medios de pago',color:'#E4002B'},
+    {id:'beneficios',name:'Beneficios & servicios',color:'#FF6B00'}
+  ];
+  var VARS={
+    light:{label:'Light',note:function(){return 'Trazo 0,6 px'}},
+    bold:{label:'Bold',note:function(i){return i.exc?'Trazo 0,8 px (ajuste óptico)':'Trazo 1 px'}},
+    solid:{label:'Solid',note:function(){return 'Relleno'}}
+  };
+  var TICKS=[16,32,48,64,128];
+  var S={icons:[],variant:'bold',cat:'all',q:'',cur:null,size:24,color:'#292929',tab:'svg'};
+  var dl=null, lastFocus=null, toastT=null;
+  var $=function(s){return document.querySelector(s)};
+  var catOf=function(id){return CATS.filter(function(c){return c.id===id})[0]};
+  var norm=function(s){return String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+
+  try{ if(window.claude&&window.claude.use){ window.claude.use('downloads').then(function(d){dl=d}).catch(function(){}) } }catch(e){}
+
+  /* ---------- datos ---------- */
+  fetch('icons.json').then(function(r){return r.json()}).then(function(list){
+    S.icons=list;
+    $('#sub').textContent=CATS.length+' subsistemas · '+list.length+' iconos · 3 variables Light / Bold / Solid';
+    buildChips(); render(); fromHash();
+  }).catch(function(){
+    $('#grid').innerHTML='<p class="empty">No se pudieron cargar los iconos. Recargá la página.</p>';
+  });
+
+  /* ---------- grilla ---------- */
+  function visible(){
+    var q=norm(S.q.trim());
+    return S.icons.filter(function(i){
+      if(S.cat!=='all'&&i.cat!==S.cat) return false;
+      if(!q) return true;
+      var hay=norm([i.name,i.slug.replace(/-/g,' '),i.tags.join(' '),catOf(i.cat).name].join(' '));
+      return q.split(/\s+/).every(function(w){return hay.indexOf(w)>-1});
+    });
+  }
+  function buildChips(){
+    var h='<button class="chip" data-c="all" aria-pressed="true">Todos <small>'+S.icons.length+'</small></button>';
+    CATS.forEach(function(c){
+      var n=S.icons.filter(function(i){return i.cat===c.id}).length;
+      h+='<button class="chip" data-c="'+c.id+'" aria-pressed="false" style="--dot:'+c.color+'"><i></i>'+esc(c.name)+' <small>'+n+'</small></button>';
+    });
+    $('#chips').innerHTML=h;
+  }
+  function render(){
+    var list=visible(), h='';
+    CATS.forEach(function(c){
+      var items=list.filter(function(i){return i.cat===c.id});
+      if(!items.length) return;
+      h+='<section class="group" style="--dot:'+c.color+'"><h2><i></i>'+esc(c.name)+' <small>'+items.length+'</small></h2><div class="grid">';
+      items.forEach(function(i){
+        h+='<button class="tile" data-s="'+i.slug+'" title="'+esc(i.name)+'"><span class="ico"><svg width="32" height="32" viewBox="0 0 16 16" fill="none" aria-hidden="true">'+i[S.variant]+'</svg></span><span class="lbl">'+esc(i.name)+'</span></button>';
+      });
+      h+='</div></section>';
+    });
+    if(!list.length) h='<div class="empty"><p>No hay iconos para «'+esc(S.q)+'».</p><button id="clr">Limpiar búsqueda</button></div>';
+    $('#grid').innerHTML=h;
+    $('#count').textContent=list.length+(list.length===1?' icono':' iconos')+' · variante '+VARS[S.variant].label;
+    document.querySelectorAll('#chips .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.c===S.cat))});
+    document.querySelectorAll('#seg button').forEach(function(b){b.setAttribute('aria-checked',String(b.dataset.v===S.variant))});
+  }
+
+  $('#q').addEventListener('input',function(e){S.q=e.target.value;render()});
+  $('#chips').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;S.cat=b.dataset.c;render()});
+  $('#seg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;setVariant(b.dataset.v)});
+  $('#grid').addEventListener('click',function(e){
+    if(e.target.closest('#clr')){S.q='';$('#q').value='';S.cat='all';render();return}
+    var t=e.target.closest('.tile'); if(t){lastFocus=t;openIcon(t.dataset.s,true)}
+  });
+  function setVariant(v){S.variant=v;render();if(S.cur)fill()}
+
+  /* ---------- overlay del visor ---------- */
+  (function(){
+    var g='<g class="ov-grid">',i;
+    for(i=0;i<=16;i++){g+='<line x1="'+i+'" y1="0" x2="'+i+'" y2="16"/><line x1="0" y1="'+i+'" x2="16" y2="'+i+'"/>'}
+    g+='</g>';
+    var k='<g class="ov-key"><rect x="1" y="1" width="14" height="14"/><rect x="2" y="1" width="12" height="14"/><rect x="1" y="2" width="14" height="12"/><circle cx="8" cy="8" r="7"/><line x1="8" y1="0" x2="8" y2="16"/><line x1="0" y1="8" x2="16" y2="8"/><line x1="1" y1="1" x2="15" y2="15"/><line x1="15" y1="1" x2="1" y2="15"/></g>';
+    var p='<g class="ov-pad"><path fill-rule="evenodd" d="M0 0H16V16H0Z M1 1V15H15V1Z"/></g>';
+    $('#ov').innerHTML=g+p+k;
+  })();
+  $('#toggles').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    var on=b.getAttribute('aria-pressed')!=='true';
+    b.setAttribute('aria-pressed',String(on));
+    $('#stage').dataset[b.dataset.t]=on?'on':'off';
+  });
+
+  /* ---------- código ---------- */
+  function pascal(slug){
+    var n=slug.split('-').map(function(p){return p.charAt(0).toUpperCase()+p.slice(1)}).join('');
+    return /^[0-9]/.test(n)?'Icon'+n:n;
+  }
+  function els(inner){return inner.match(/<[^>]+\/>/g)||[inner]}
+  function svgCode(i,v,size){
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n'+
+      els(i[v]).map(function(e){return '  '+e}).join('\n')+'\n</svg>';
+  }
+  function jsxCode(i,v,size){
+    var camel=function(s){return s.replace(/\b(stroke|fill|clip)-([a-z]+)(-[a-z]+)?=/g,function(m){return m.replace(/-([a-z])/g,function(_,c){return c.toUpperCase()})})};
+    return 'export const '+pascal(i.slug)+VARS[v].label+' = ({ size = '+size+', ...props }) => (\n'+
+      '  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>\n'+
+      els(i[v]).map(function(e){return '    '+camel(e)}).join('\n')+'\n  </svg>\n);';
+  }
+
+  /* ---------- modal ---------- */
+  function openIcon(slug,push){
+    var i=S.icons.filter(function(x){return x.slug===slug})[0]; if(!i) return;
+    S.cur=i; fill();
+    $('#scrim').classList.add('open'); document.body.style.overflow='hidden';
+    if(push){ try{ if(location.hash!=='#'+slug) location.hash=slug }catch(e){} }
+    setTimeout(function(){$('#close').focus()},0);
+  }
+  function closeModal(push){
+    if(!S.cur) return;
+    S.cur=null; $('#scrim').classList.remove('open'); document.body.style.overflow='';
+    if(push){ try{ history.replaceState(null,'',location.pathname+location.search) }catch(e){ try{location.hash=''}catch(_){} } }
+    if(lastFocus&&document.contains(lastFocus)) lastFocus.focus();
+  }
+  function fill(){
+    var i=S.cur,v=S.variant,c=catOf(i.cat);
+    $('#mDot').style.background=c.color; $('#mCat').textContent=c.name;
+    $('#mTitle').textContent=i.name;
+    $('#mSlug').textContent=i.slug+'-'+v;
+    $('#mNote').textContent=VARS[v].note(i);
+    document.querySelectorAll('#mSeg button').forEach(function(b){b.setAttribute('aria-checked',String(b.dataset.v===v))});
+    var big=$('#big'); big.innerHTML=i[v]; big.style.color=S.color; big.setAttribute('aria-label',i.name+' ('+VARS[v].label+')');
+    var mini=$('#mini'); mini.innerHTML=i[v]; mini.style.color=S.color;
+    var px=Math.min(S.size,96); mini.setAttribute('width',px); mini.setAttribute('height',px);
+    $('#sizeOut').textContent=S.size+' px';
+    var r=$('#size'); r.value=S.size; r.style.setProperty('--p',((S.size-16)/112*100)+'%');
+    document.querySelectorAll('#ticks button').forEach(function(b){b.setAttribute('aria-pressed',String(+b.dataset.v===S.size))});
+    $('#colorOut').textContent=S.color.toUpperCase();
+    $('#color').value=S.color;
+    document.querySelectorAll('#swatches button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.c.toLowerCase()===S.color.toLowerCase()))});
+    $('#code').textContent=S.tab==='svg'?svgCode(i,v,S.size):jsxCode(i,v,S.size);
+    var tags=''; i.tags.forEach(function(t){tags+='<button data-t="'+esc(t)+'">'+esc(t)+'</button>'});
+    $('#tags').innerHTML=tags;
+  }
+  (function(){
+    var h=''; TICKS.forEach(function(t,k){
+      var tr=k===0?'translateX(0)':(k===TICKS.length-1?'translateX(-100%)':'translateX(-50%)');
+      h+='<button data-v="'+t+'" style="left:'+((t-16)/112*100)+'%;transform:'+tr+'">'+t+'</button>';
+    });
+    $('#ticks').innerHTML=h;
+  })();
+  $('#ticks').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.size=+b.dataset.v;fill()});
+  $('#size').addEventListener('input',function(e){S.size=+e.target.value;fill()});
+  $('#color').addEventListener('input',function(e){S.color=e.target.value;fill()});
+  $('#swatches').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.color=b.dataset.c;fill()});
+  $('#mSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;setVariant(b.dataset.v)});
+  $('#tabs').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;S.tab=b.dataset.tab;
+    document.querySelectorAll('#tabs button').forEach(function(x){x.setAttribute('aria-selected',String(x===b))});
+    fill();
+  });
+  $('#tags').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    S.q=b.dataset.t;S.cat='all';$('#q').value=S.q;closeModal(true);render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  $('#close').addEventListener('click',function(){closeModal(true)});
+  $('#scrim').addEventListener('mousedown',function(e){if(e.target===this)closeModal(true)});
+  function step(d){
+    var list=visible(); if(!list.length||!S.cur) return;
+    var idx=list.map(function(x){return x.slug}).indexOf(S.cur.slug);
+    var n=list[(idx+d+list.length)%list.length];
+    openIcon(n.slug,true);
+  }
+  $('#prev').addEventListener('click',function(){step(-1)});
+  $('#next').addEventListener('click',function(){step(1)});
+  document.addEventListener('keydown',function(e){
+    if(!S.cur) return;
+    if(e.key==='Escape'){e.preventDefault();closeModal(true);return}
+    if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&!/INPUT|TEXTAREA/.test(e.target.tagName)){e.preventDefault();step(e.key==='ArrowLeft'?-1:1);return}
+    if(e.key==='Tab'){
+      var f=[].slice.call($('#modal').querySelectorAll('button,input,[tabindex="0"]')).filter(function(x){return !x.disabled&&x.offsetParent!==null});
+      if(!f.length) return;
+      var a=f[0],z=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+      else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+    }
+  });
+  function fromHash(){
+    var h=''; try{h=decodeURIComponent(location.hash.slice(1))}catch(e){}
+    if(!h){ if(S.cur) closeModal(false); return }
+    if(S.cur&&S.cur.slug===h) return;
+    if(S.icons.some(function(x){return x.slug===h})) openIcon(h,false);
+  }
+  window.addEventListener('hashchange',fromHash);
+
+  /* ---------- copiar y descargar ---------- */
+  function toast(msg){
+    var t=$('#toast'); t.textContent=msg; t.classList.add('show');
+    clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove('show')},2200);
+  }
+  function copyText(text,msg){
+    var done=function(ok){toast(ok?msg:'No se pudo copiar. Seleccioná el código y copialo a mano.')};
+    var fallback=function(){
+      var ok=false;
+      try{var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(ta);ta.select();ok=document.execCommand('copy');ta.remove()}catch(e){}
+      done(ok);
+    };
+    try{ navigator.clipboard.writeText(text).then(function(){done(true)},fallback) }catch(e){ fallback() }
+  }
+  function saveFile(filename,data){
+    if(dl){
+      dl.save({filename:filename,data:data}).then(function(){toast('Archivo listo: '+filename)}).catch(function(err){
+        if(err&&err.code==='declined') return;
+        toast('No se pudo descargar. Probá con Copiar SVG.');
+      });
+      return;
+    }
+    try{
+      var blob=data instanceof Blob?data:new Blob([data],{type:'image/svg+xml'});
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){URL.revokeObjectURL(a.href)},1000);
+      toast('Descargando '+filename);
+    }catch(e){ toast('No se pudo descargar. Probá con Copiar SVG.') }
+  }
+  function current(){return {i:S.cur,v:S.variant,size:S.size}}
+  $('#copySvg').addEventListener('click',function(){var c=current();copyText(svgCode(c.i,c.v,c.size),'SVG copiado')});
+  $('#copyJsx').addEventListener('click',function(){var c=current();copyText(jsxCode(c.i,c.v,c.size),'JSX copiado')});
+  $('#dlSvg').addEventListener('click',function(){var c=current();saveFile(c.i.slug+'-'+c.v+'.svg',svgCode(c.i,c.v,c.size)+'\n')});
+  $('#dlPng').addEventListener('click',function(){
+    var c=current();
+    var svg=svgCode(c.i,c.v,c.size).replace(/currentColor/g,S.color);
+    var url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+    var img=new Image();
+    img.onload=function(){
+      var cv=document.createElement('canvas'); cv.width=c.size; cv.height=c.size;
+      cv.getContext('2d').drawImage(img,0,0,c.size,c.size);
+      URL.revokeObjectURL(url);
+      cv.toBlob(function(b){ if(b) saveFile(c.i.slug+'-'+c.v+'-'+c.size+'.png',b); else toast('No se pudo generar el PNG.') },'image/png');
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);toast('No se pudo generar el PNG.')};
+    img.src=url;
+  });
+})();
+</script>
+</body>
+</html>
